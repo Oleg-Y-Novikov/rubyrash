@@ -1,0 +1,13 @@
+---
+:subject: Hello Ruby
+:body:
+:to:
+:from:
+:via: :smtp
+:via_options:
+  :address: smtp.mail.ru
+  :port: '465'
+  :tls: true
+  :user_name:
+  :password:
+  :authentication: :plain
