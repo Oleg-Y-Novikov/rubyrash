@@ -1,0 +1,47 @@
+Saving/Retrieving Data With a YAML file in Ruby: The Basics
+Kristen Fletcher Wilde
+Kristen Fletcher Wilde
+
+Feb 15, 2017·1 min read
+
+
+Writing and reading yaml files can be very simple. Here are a few examples.
+Writing an array to a yaml file:
+require 'yaml'
+pets = ["dog", "cat", "hamster"]
+File.open("pets.yml", "w") { |file| file.write(pets.to_yaml) }
+Retrieving the array:
+require 'yaml'
+pet_array = YAML.load(File.read("pets.yml"))
+p pet_array       
+#=> ["dog", "cat", "hamster"]
+See?! If, out of curiosity, you wanted to look at pets.yml, here’s what you’d see:
+---
+- dog
+- cat
+- hamster
+Working with a more complex data structure is no different. Here is a recipe in the form of a hash which contains an array which contains some hashes.
+require 'yaml'
+recipe = { title: "Coffee", 
+           ingredients: [ { ingredient_name: "Water", 
+                            quantity: 8,
+                            unit_of_measurement: "oz" },
+                          { ingredient_name: "Coffee Grounds", 
+                            quantity: 1,
+                            unit_of_measurement: "tbsp" } ],
+           directions: "Make coffee."  }
+File.open("coffee.yml", "w") { |file| file.write(recipe.to_yaml) }
+Inside the yaml file:
+---
+:title: Coffee
+:ingredients:
+- :ingredient_name: Water
+  :quantity: 8
+  :unit_of_measurement: oz
+- :ingredient_name: Coffee Grounds
+  :quantity: 1
+  :unit_of_measurement: tbsp
+:directions: Make coffee.
+Retrieving the file returns a new recipe hash populated with data equal to the data we saved.
+recipe_from_yaml_file = YAML.load(File.read("coffee.yml"))
+And off you go!
