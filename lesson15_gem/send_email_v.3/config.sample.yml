@@ -1,0 +1,10 @@
+---
+:from: <you_username>@mail.ru # от кого письмо (наш обратный адрес)
+:via: :smtp
+:via_options:
+  :address: smtp.mail.ru # это хост, сервер отправки почты
+  :port: '465' # порт
+  :tls: true # если сервер работает в режиме TLS
+  :user_name: <you_username>@mail.ru # используем наш адрес почты как логин
+  :password: password  # задаем пароль от нашей почты
+  :authentication: :plain # "обычный" тип авторизации по паролю
