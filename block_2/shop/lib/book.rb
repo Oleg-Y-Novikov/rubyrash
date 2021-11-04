@@ -1,11 +1,16 @@
 class Book < Product
-
   class << self
     def books
-      @books ||= 0
+      @books ||= []
     end
 
-  protected
+    def from_file(route)
+      book = File.readlines(route).map!(&:chomp)
+      new(title: book[0], genre: book[1], author: book[2], price: book[3], amount: book[4])
+    end
+
+    protected
+
     attr_writer :books
 
     def counter
@@ -13,16 +18,24 @@ class Book < Product
     end
   end
 
+  attr_accessor :genre, :author
+
   def initialize(params)
     super(params)
     @genre = params[:genre]
     @author = params[:author]
-    self.class.send :counter
-    @@products << self
+    #self.class.send :counter
+    Product.add(self)
+    self.class.books << self
   end
 
   def to_s
     "Книга \"#{@title}\", #{@genre}, автор - #{@author}, #{price} руб. (осталось #{amount})"
   end
 
+  def update(params)
+    super
+    @genre = params[:genre] if params[:genre]
+    @author = params[:author] if params[:author]
+  end
 end

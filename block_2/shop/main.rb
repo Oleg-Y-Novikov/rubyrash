@@ -2,13 +2,28 @@ require_relative 'lib/product'
 require_relative 'lib/book'
 require_relative 'lib/movie'
 
+# Считываем наши книгу и фильм из папок data/books и data/films соответственно
+current_path = File.dirname(__FILE__)
+film = Movie.from_file(current_path + '/data/films/leon.txt')
+book = Book.from_file(current_path + '/data/books/idiot.txt')
 
+# Выводим их на экран
+puts film
+puts book
 
-#params = {title: "title", genre: "genre", author: "author", price: "price", amount: "amount"}
+# Пытаемся вызвать метод from_file у класса Product и ловим ошибку
+begin
+  Product.from_file(current_path + '/data/films/01.txt')
+rescue NotImplementedError
+  puts 'Метод класса Product.from_file не реализован'
+end
+#params = { title: "title", genre: "genre", author: "author" }
 #Movie.new(params)
+#print Product.products
+
 
 #Product.products.each {|ell| ell.each_movies {|e| puts "Hello #{e}"}} 
-
+=begin
 loop do
   puts "Для добавления книги введите 1, для фильма введите 2, для выхода введите 0:"
   choice = gets.chomp.to_i
@@ -51,3 +66,4 @@ Product.products.sort {|a,b| a.class.name <=> b.class.name }.each { |product| pu
 
 puts "Всего книг - #{Book.books}"
 puts "Всего фильмов - #{Movie.movies}"
+=end
