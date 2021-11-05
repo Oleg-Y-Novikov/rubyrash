@@ -1,7 +1,23 @@
+# frozen_string_literal: true
+
 require_relative 'lib/product'
 require_relative 'lib/book'
 require_relative 'lib/movie'
+require_relative 'lib/product_collection'
 
+
+collection = ProductCollection.from_dir('./data')
+
+collection.sort!(by: :price, order: :asc)
+
+collection.products.each { |product| puts product }
+
+
+
+
+
+
+=begin
 # Считываем наши книгу и фильм из папок data/books и data/films соответственно
 current_path = File.dirname(__FILE__)
 film = Movie.from_file(current_path + '/data/films/leon.txt')
@@ -22,7 +38,8 @@ end
 #print Product.products
 
 
-#Product.products.each {|ell| ell.each_movies {|e| puts "Hello #{e}"}} 
+#Product.products.each {|ell| ell.each_movies {|e| puts "Hello #{e}"}}
+=end
 =begin
 loop do
   puts "Для добавления книги введите 1, для фильма введите 2, для выхода введите 0:"

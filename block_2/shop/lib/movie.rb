@@ -6,7 +6,7 @@ class Movie < Product
 
     def from_file(route)
       movie = File.readlines(route).map!(&:chomp)
-      new(title: movie[0], year: movie[1], director: movie[2], price: movie[3], amount: movie[4])
+      new(title: movie[0], year: movie[1].to_i, director: movie[2], price: movie[3].to_i, amount: movie[4].to_i)
     end
 
     protected
@@ -24,7 +24,6 @@ class Movie < Product
     super(params)
     @year = params[:year]
     @director = params[:director]
-    #self.class.send :add, self
     Product.add(self)
     self.class.movies << self
   end

@@ -6,7 +6,7 @@ class Book < Product
 
     def from_file(route)
       book = File.readlines(route).map!(&:chomp)
-      new(title: book[0], genre: book[1], author: book[2], price: book[3], amount: book[4])
+      new(title: book[0], genre: book[1], author: book[2], price: book[3].to_i, amount: book[4].to_i)
     end
 
     protected
@@ -24,7 +24,6 @@ class Book < Product
     super(params)
     @genre = params[:genre]
     @author = params[:author]
-    #self.class.send :counter
     Product.add(self)
     self.class.books << self
   end
