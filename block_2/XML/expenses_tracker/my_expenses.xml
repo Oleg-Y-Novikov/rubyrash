@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<expenses>
+  <expense date="9.7.2021" category="Образование" amount="900">
+    Книга по Ruby on Rails
+  </expense>
+
+  <expense date="1.7.2021" category="Техника" amount="4000">
+    Кофемашина
+  </expense>
+
+  <expense date="23.6.2021" category="Продукты" amount="500">
+    Овощи и фрукты
+  </expense>
+</expenses>
