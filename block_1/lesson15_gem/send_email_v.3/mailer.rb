@@ -6,4 +6,4 @@ require_relative 'aplication'
 
 Aplication.run
 
-puts "Bye - Bye" 
+puts "Bye - Bye"
